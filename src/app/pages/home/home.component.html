@@ -1,0 +1,100 @@
+<form
+  [formGroup]="form"
+  autocomplete="off"
+>
+  <div>
+    <input
+      appClassByStateInput
+      [loadInitialState]="false"
+      [clearStates]="clearStates"
+      placeholder="Name"
+      formControlName="name"
+      type="text"
+    />
+    <validator-error-msg
+      [form]="form"
+      [list]="validations['name']"
+      [type]="'name'"
+    />
+  </div>
+  <div>
+    <input
+      appClassByStateInput
+      [loadInitialState]="false"
+      [clearStates]="clearStates"
+      placeholder="Age"
+      formControlName="age"
+      type="number"
+    />
+    <validator-error-msg
+      [form]="form"
+      [list]="validations['age']"
+      [type]="'age'"
+    />
+  </div>
+  <div>
+    <input
+      appClassByStateInput
+      [loadInitialState]="false"
+      [clearStates]="clearStates"
+      placeholder="Email"
+      formControlName="email"
+      type="email"
+    />
+    <div
+      *ngIf="loadingEmail"
+      class="loader"
+    ></div>
+    <validator-error-msg
+      [form]="form"
+      [list]="validations['email']"
+      [type]="'email'"
+    />
+  </div>
+  <div>
+    <img
+      [src]="showPassword ? imageShowPassword : imageHidePassword"
+      (click)="showPassword = !showPassword"
+    />
+    <input
+      appClassByStateInput
+      [loadInitialState]="false"
+      [clearStates]="clearStates"
+      placeholder="Password"
+      formControlName="password"
+      [type]="showPassword ? 'text' : 'password'"
+    />
+    <validator-error-msg
+      [form]="form"
+      [list]="validations['password']"
+      [type]="'password'"
+    />
+  </div>
+  <div>
+    <img
+      [src]="showPasswordConfirm ? imageShowPassword : imageHidePassword"
+      (click)="showPasswordConfirm = !showPasswordConfirm"
+    />
+    <input
+      appClassByStateInput
+      [loadInitialState]="false"
+      [clearStates]="clearStates"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+      [type]="showPasswordConfirm ? 'text' : 'password'"
+    />
+    <validator-error-msg
+      [form]="form"
+      [list]="validations['confirmPassword']"
+      [type]="'confirmPassword'"
+    />
+  </div>
+
+  <button
+    type="submit"
+    (click)="submit()"
+    [disabled]="form.invalid || form.pending"
+  >
+    Send
+  </button>
+</form>
